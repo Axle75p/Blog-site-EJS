@@ -14,11 +14,17 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+let publish = "";
+let posts = [];
 
 app.get("/", function(req,res){
 /*   res.render("home.ejs"); */
-  res.render("home.ejs", {homeStartingContent: homeStartingContent});
+  res.render("home.ejs", {
+    homeStartingContent: homeStartingContent,
+    posts: posts
+  });
 });
+
 
 app.get("/about", function(req, res){
   res.render("about.ejs", {aboutContent: aboutContent});
@@ -28,8 +34,43 @@ app.get("/contact", function(req, res){
   res.render("contact.ejs", {contactContent: contactContent});
 })
 
+app.get("/compose", function(req,res){
+  res.render("compose.ejs");
+})
 
+app.post("/compose", function(req,res){
+  var post = {};
+  post.title = req.body.publish;
+  post.content = req.body.postBody;
+  posts.push(post);
+  res.redirect("/");
+})
 
+app.get('/posts/:postName', function (req, res) {
+
+    const requestedTitle = req.params.postName;
+  
+  posts.forEach(function(post){
+    const storedTitle = post.title;
+    if (requestedTitle === storedTitle){
+      console.log("Match")
+    }
+  });
+/* 
+  console.log(req.params.postName);
+  console.log(posts)
+  
+   console.log("title " +  posts[0].title);
+   console.log("url " + req.params.postName); 
+   if (req.params.postName === posts[0].title){
+     console.log("the names is same")
+   }
+   else{
+     console.log("not same")
+   }
+  */
+ });
+ 
 
 
 
