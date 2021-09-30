@@ -8,9 +8,9 @@
         <% if (fullContentSrting.length > 100){ %>
             <%      let turncatedContentString  = fullContentSrting.substring(0,100); %> 
             <%      turncatedContentString = turncatedContentString + " ..."; %> 
-            <%=     turncatedContentString    %>
+            <%=     turncatedContentString     %> <a href="/posts/<%=post.title%>">read more</a>
         <% } else { %>
-            <%=     fullContentSrting %>
+            <%=     fullContentSrting %><a href="/posts/<%=post.title%>">read more</a>
         <% } %>
  
         <% })                            %>

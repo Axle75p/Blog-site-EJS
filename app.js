@@ -56,7 +56,7 @@ app.get('/posts/:postName', function (req, res) {
     if (requestedTitle === storedTitle){
       res.render("post.ejs",{
         title: post.title,
-        content: post.content
+        content: post.content,
       });
     }
   });
