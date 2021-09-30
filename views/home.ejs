@@ -4,7 +4,18 @@
 <div>
     <% posts.forEach(function(post){ %>
     <h2><%=     post.title               %></h2>
-    <p> <%=     post.content              %></p>
-    <% })                            %>
+        <%      let fullContentSrting = post.content; %>
+        <% if (fullContentSrting.length > 100){ %>
+            <%      let turncatedContentString  = fullContentSrting.substring(0,100); %> 
+            <%      turncatedContentString = turncatedContentString + " ..."; %> 
+            <%=     turncatedContentString    %>
+        <% } else { %>
+            <%=     fullContentSrting %>
+        <% } %>
+ 
+        <% })                            %>
+
+
+   
 </div>  
 <%- include('partials/footer') %>
